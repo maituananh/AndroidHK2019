@@ -28,5 +28,20 @@ public class MainActivity extends AppCompatActivity {
         infoPlayerList.add(new InfoPlayer("Reus", 28, R.drawable.reus, "Borussia Dortmund", "ĐỨC"));
         infoPlayerList.add(new InfoPlayer("Ronaldo", 28, R.drawable.ronaldo, "juve", "bồ đào nha"));
         infoPlayerList.add(new InfoPlayer("de gea", 28, R.drawable.degea, "MU", "tây ban nha"));
+        infoPlayerList.add(new InfoPlayer("toni kroos", 28, R.drawable.kroos, "Real Madrid", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("gotze", 28, R.drawable.gotze, "Borussia Dortmund", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("Reus", 28, R.drawable.reus, "Borussia Dortmund", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("Ronaldo", 28, R.drawable.ronaldo, "juve", "bồ đào nha"));
+        infoPlayerList.add(new InfoPlayer("de gea", 28, R.drawable.degea, "MU", "tây ban nha"));
+        infoPlayerList.add(new InfoPlayer("toni kroos", 28, R.drawable.kroos, "Real Madrid", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("gotze", 28, R.drawable.gotze, "Borussia Dortmund", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("Reus", 28, R.drawable.reus, "Borussia Dortmund", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("Ronaldo", 28, R.drawable.ronaldo, "juve", "bồ đào nha"));
+        infoPlayerList.add(new InfoPlayer("de gea", 28, R.drawable.degea, "MU", "tây ban nha"));
+        infoPlayerList.add(new InfoPlayer("toni kroos", 28, R.drawable.kroos, "Real Madrid", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("gotze", 28, R.drawable.gotze, "Borussia Dortmund", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("Reus", 28, R.drawable.reus, "Borussia Dortmund", "ĐỨC"));
+        infoPlayerList.add(new InfoPlayer("Ronaldo", 28, R.drawable.ronaldo, "juve", "bồ đào nha"));
+        infoPlayerList.add(new InfoPlayer("de gea", 28, R.drawable.degea, "MU", "tây ban nha"));
     }
 }

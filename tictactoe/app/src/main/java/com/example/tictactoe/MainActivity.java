@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonnewgame;
     private View view;
     private int count;
+    int dem = 0;
 
     private int check1 = 0;
     private int check2 = 0;
@@ -167,39 +168,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             button9.setEnabled(false);
         }
-//        else if (view.getId() == R.id.newgame){
-//            // reset game
-//            newGame();
-//        }
         count += 1;
-        if (count >= 5) {
+        if (count > 4) {
             checkWIN();
+        }
+        dem ++;
+        if (dem == 9) {
+            checkWIN(); // xem laij
+
+            textView.setText("HOA");
+            textView.setVisibility(view.VISIBLE);
+            button1.setEnabled(false);
+            button2.setEnabled(false);
+            button3.setEnabled(false);
+            button4.setEnabled(false);
+            button5.setEnabled(false);
+            button6.setEnabled(false);
+            button7.setEnabled(false);
+            button8.setEnabled(false);
+            button9.setEnabled(false);
         }
     }
 
     private void checkWIN() {
-        if (check1 == check2 && check1 == check3) {
+        if (check1 == check2 && check1 == check3 && check1 > 0 && check4 > 0) {
             // hàng ngang thứ 1 win
             textWin();
-        } else if (check4 == check5 && check4 == check6) {
+        } else if (check4 == check5 && check4 == check6 && check4 > 0 && check5 > 0) {
             // hàng ngang thứ 2 win
             textWin();
-        } else if (check7 == check8 && check7 == check9) {
+        } else if (check7 == check8 && check7 == check9 && check7 > 0 && check9 > 0) {
             // hàng ngang thứ 3 win
             textWin();
-        } else if (check1 == check4 && check1 == check7) {
+        } else if (check1 == check4 && check1 == check7 && check1 > 0 && check7 > 0) {
             // hàng dọc thứ 1 win
             textWin();
-        } else if (check2 == check5 && check2 == check8) {
+        } else if (check2 == check5 && check2 == check8 && check2 > 0 && check8 > 0) {
             // hàng dọc thứ 2 win
             textWin();
-        } else if (check3 == check6 && check3 == check9) {
+        } else if (check3 == check6 && check3 == check9 && check3 > 0 && check9 > 0) {
             // hàng dọc thứ 3 win
             textWin();
-        } else if (check1 == check5 && check1 == check9) {
+        } else if (check1 == check5 && check1 == check9 && check1 > 0 && check9 > 0) {
             // hàng chéo thứ 1 win
             textWin();
-        } else if (check3 == check5 && check3 == check7) {
+        } else if (check3 == check5 && check3 == check7 && check3 > 0 && check7 > 0) {
             // hàng chéo thứ 2 win
             textWin();
         }
@@ -207,12 +220,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void textWin() {
         textView.setText("YOU WIN");
+        textView.setVisibility(view.VISIBLE);
         buttonnewgame.setVisibility(view.VISIBLE);
+        button1.setEnabled(false);
+        button2.setEnabled(false);
+        button3.setEnabled(false);
+        button4.setEnabled(false);
+        button5.setEnabled(false);
+        button6.setEnabled(false);
+        button7.setEnabled(false);
+        button8.setEnabled(false);
+        button9.setEnabled(false);
     }
 
     public void newGame(View view) {
         textView.setVisibility(view.INVISIBLE);
-        buttonnewgame.setVisibility(view.INVISIBLE);
         button1.setEnabled(true);
         button2.setEnabled(true);
         button3.setEnabled(true);
@@ -232,5 +254,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button7.setText("");
         button8.setText("");
         button9.setText("");
+
+        check1 = 0;
+        check2 = 0;
+        check3 = 0;
+        check4 = 0;
+        check5 = 0;
+        check6 = 0;
+        check7 = 0;
+        check8 = 0;
+        check9 = 0;
+        count = 0;
+        dem = 0;
     }
 }
