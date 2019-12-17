@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailBook">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/image"/>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Name: javascript"
+        android:layout_marginTop="155dp"
+        android:gravity="center_vertical"
+        android:textSize="20dp"
+        android:id="@+id/nameBook"/>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Author: javascript"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="155dp"
+        android:gravity="center_vertical"
+        android:textSize="20dp"
+        android:id="@+id/nameAuthor"/>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Price: javascript"
+        android:gravity="center_vertical"
+        android:layout_marginTop="205dp"
+        android:textSize="20dp"
+        android:id="@+id/price"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginLeft="240dp"
+        android:text="Booking"
+        android:onClick="booking"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description: javascripthjsdfh"
+        android:layout_marginTop="255dp"
+        android:textSize="20dp"
+        android:id="@+id/description"
+        />
+
+</RelativeLayout>

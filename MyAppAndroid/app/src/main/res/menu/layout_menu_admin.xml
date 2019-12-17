@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Add Book"/>
+    <item android:title="List Book"/>
+    <item android:title="Search book by name"/>
+    <item android:title="Search book by author"/>
+    <item android:title="Logout"/>
+</menu>
