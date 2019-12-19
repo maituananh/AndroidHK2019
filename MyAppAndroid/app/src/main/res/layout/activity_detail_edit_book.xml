@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailBook">
+    tools:context=".DetailEditBook">
 
     <ImageView
         android:layout_width="150dp"
@@ -40,16 +40,29 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="160dp"
-        android:layout_marginLeft="5dp"
-        android:text="Booking"
-        android:onClick="functionBooking" />
-    <TextView
-        android:layout_width="40dp"
+        android:layout_marginLeft="160dp"
+        android:text="EDIT"
+        android:onClick="onClickEditBook"
+        android:background="@android:color/holo_green_light"
+        android:textColor="@android:color/background_light"
+         />
+    <Button
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="10"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="280dp"
+        android:text="DELETE"
+        android:onClick="onClickDeleteBook"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/background_light"
+        />
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Quantity: 10"
         android:gravity="center_vertical"
         android:layout_marginTop="160dp"
-        android:layout_marginLeft="110dp"
+        android:layout_marginLeft="5dp"
         android:textSize="20dp"
         android:id="@+id/quantity"/>
     <TextView
@@ -60,5 +73,4 @@
         android:textSize="20dp"
         android:id="@+id/description"
         />
-
 </RelativeLayout>

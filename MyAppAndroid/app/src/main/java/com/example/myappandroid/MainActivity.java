@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.dao.BookDao;
 import com.example.dao.UserDao;
+import com.example.util.SentenceInsertBook;
 
 public class MainActivity extends AppCompatActivity {
     Database database;
@@ -40,9 +41,17 @@ public class MainActivity extends AppCompatActivity {
         database.queryData("INSERT INTO User VALUES (NULL, 'Mai Tuấn Anh', 'admin', 'admin', 'admin')");
         database.queryData("INSERT INTO User VALUES (NULL, 'Nguyễn Văn A', 'user', 'nguyenvana', '123')");
 
-        database.queryData("INSERT INTO Book VALUES (NULL, 'JAVA', 'java1.jpg', '200.000', 'MR.SON', 'Java english', 1)");
-        database.queryData("INSERT INTO Book VALUES (NULL, 'JAVASCRIPT', 'javascript.jpg', '200.000', 'MR.SON', 'Javascript english', 2)");
-        database.queryData("INSERT INTO Book VALUES (NULL, 'C#', 'cshap1.jpg', '300.000', 'JACK_MA', 'C# English', 3)");
+        // thêm sách vào database
+        database.queryData(SentenceInsertBook.book1());
+        database.queryData(SentenceInsertBook.book2());
+        database.queryData(SentenceInsertBook.book3());
+        database.queryData(SentenceInsertBook.book4());
+        database.queryData(SentenceInsertBook.book5());
+        database.queryData(SentenceInsertBook.book6());
+        database.queryData(SentenceInsertBook.book7());
+        database.queryData(SentenceInsertBook.book8());
+        database.queryData(SentenceInsertBook.book9());
+        database.queryData(SentenceInsertBook.book10());
 
         database.queryData("INSERT INTO Booking VALUES (NULL, 1, 1)");
         database.queryData("INSERT INTO Booking VALUES (NULL, 1, 2)");

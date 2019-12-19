@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.dao.BookDao;
 import com.example.model.Book;
@@ -18,43 +20,55 @@ import com.example.model.KeepInformation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeListBook extends AppCompatActivity {
+public class SearchBook extends AppCompatActivity {
     ListView listView;
     List<Book> bookArrayList;
     ListBookAdapter listBookAdapter;
+    Database database;
+    BookDao bookDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_list_book);
-        mapping();
-        listBookAdapter = new ListBookAdapter(this, R.layout.list_book, bookArrayList);
-        listView.setAdapter(listBookAdapter);
+        setContentView(R.layout.activity_search_book);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                int idItem = bookArrayList.get(position).getId();
-                if (KeepInformation.getRole().trim().toUpperCase().equals("ADMIN")) {
-                    Intent intent = new Intent(HomeListBook.this, DetailEditBook.class);
-                    intent.putExtra("idBook", idItem);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(HomeListBook.this, DetailBook.class);
+        database = new Database(this, "ManagementBook.sqlite", null, 1);
+        bookDao = new BookDao(database);
+    }
+
+    public void mappingData() {
+        listBookAdapter = new ListBookAdapter(this, R.layout.list_book, bookArrayList);
+        if (bookArrayList.size() > 0) {
+            listView.setAdapter(listBookAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    int idItem = bookArrayList.get(position).getId();
+                    Intent intent = new Intent(SearchBook.this, DetailBook.class);
                     intent.putExtra("idBook", idItem);
                     startActivity(intent);
                 }
-            }
-        });
+            });
+        } else {
+            Toast.makeText(this, "Không có thông tin bạn cần tìm", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void mapping() {
-        listView = findViewById(R.id.listBook);
+    public void onClickSearchByName(View view) {
+        EditText editText = findViewById(R.id.searchNameBook);
+        listView = findViewById(R.id.listViewSearchBook);
         bookArrayList = new ArrayList<>();
-        Database database = new Database(this, "ManagementBook.sqlite", null, 1);
-        BookDao bookDao = new BookDao(database);
-        bookArrayList = bookDao.getAllBook();
+        bookArrayList = bookDao.searchNameBook(editText.getText().toString().trim());
+        mappingData();
+    }
+
+    public void onClickSearchByNameAuthor(View view) {
+        EditText editText = findViewById(R.id.searchNameAuthorBook);
+        listView = findViewById(R.id.listViewSearchBook);
+        bookArrayList = new ArrayList<>();
+        bookArrayList = bookDao.searchAuthorBook(editText.getText().toString().trim());
+        mappingData();
     }
 
     // sử lý menu

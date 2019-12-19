@@ -1,13 +1,12 @@
 package com.example.model;
 
-import com.example.myappandroid.Database;
-
-import java.util.List;
-
 public class Booking {
     private int id;
-    private List<User> userList;
-    private List<Book> bookList;
+    private User user;
+    private Book book;
+
+    public Booking() {
+    }
 
     public int getId() {
         return id;
@@ -17,19 +16,19 @@ public class Booking {
         this.id = id;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<Book> getBookList() {
-        return bookList;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

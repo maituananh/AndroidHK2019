@@ -4,29 +4,20 @@
     <ImageView
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:id="@+id/image"
-        android:scaleType="fitCenter"/>
+        android:id="@+id/imageOfUserBooking"/>
     <TextView
         android:layout_marginLeft="160dp"
         android:layout_width="200dp"
         android:layout_height="30dp"
         android:textSize="20dp"
         android:text="tên sách"
-        android:id="@+id/nameBook"/>
+        android:id="@+id/nameBookOfUserBooking"/>
     <TextView
         android:layout_marginLeft="160dp"
         android:layout_marginTop="40dp"
         android:layout_width="200dp"
         android:layout_height="30dp"
         android:textSize="20dp"
-        android:text="tác giả"
-        android:id="@+id/nameAuthor"/>
-    <TextView
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="80dp"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:textSize="20dp"
         android:text="giá"
-        android:id="@+id/price"/>
+        android:id="@+id/priceOfUserBooking"/>
 </RelativeLayout>

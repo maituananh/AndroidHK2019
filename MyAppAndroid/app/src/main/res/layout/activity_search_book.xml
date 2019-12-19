@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchBook">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Name: "
+        android:textSize="25dp"/>
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="130dp"
+        android:textSize="18dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="100dp"
+        android:id="@+id/searchNameBook"/>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Search name"
+        android:onClick="onClickSearchByName"
+        android:layout_marginLeft="250dp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Author: "
+        android:layout_marginTop="65dp"
+        android:textSize="25dp"/>
+
+    <EditText
+        android:layout_width="130dp"
+        android:textSize="18dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="65dp"
+        android:id="@+id/searchNameAuthorBook"
+        android:layout_marginLeft="100dp"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Search author"
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="250dp"
+        android:onClick="onClickSearchByNameAuthor"/>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="503dp"
+        android:id="@+id/listViewSearchBook"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="126dp" />
+</RelativeLayout>

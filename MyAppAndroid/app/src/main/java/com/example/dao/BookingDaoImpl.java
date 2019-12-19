@@ -1,5 +1,9 @@
 package com.example.dao;
 
-public interface BookingDaoImpl {
+import java.util.List;
 
+public interface BookingDaoImpl {
+    void userBookingBook(int idUserBooking, int idBookBooking);
+    List getAllBookOfUserBooking(int idUser_Booking);
+    void deleteBookingById(int id);
 }

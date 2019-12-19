@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Search book by name"/>
-    <item android:title="Search book by author"/>
-    <item android:title="Book booked"/>
-    <item android:title="Logout"/>
+    <item android:title="List Book" android:id="@+id/listBookUser"/>
+    <item android:title="Search book" android:id="@+id/searchBookUser"/>
+    <item android:title="Book booked" android:id="@+id/bookBookedUser"/>
+    <item android:title="Logout" android:id="@+id/logoutUser"/>
 </menu>

@@ -1,8 +1,10 @@
 package com.example.myappandroid;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,54 +12,79 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.dao.BookDao;
-import com.example.model.Book;
+import com.example.dao.BookingDao;
+import com.example.model.Booking;
 import com.example.model.KeepInformation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeListBook extends AppCompatActivity {
+public class BookingListOfUser extends AppCompatActivity {
+    Database database;
+    BookingDao bookingDao;
+    BookDao bookDao;
+
     ListView listView;
-    List<Book> bookArrayList;
-    ListBookAdapter listBookAdapter;
+    List<Booking> bookArrayList;
+    ListBookingOfUserAdapter listBookingOfUserAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_list_book);
-        mapping();
-        listBookAdapter = new ListBookAdapter(this, R.layout.list_book, bookArrayList);
-        listView.setAdapter(listBookAdapter);
+        setContentView(R.layout.activity_list_booking_of_user);
+        database = new Database(this, "ManagementBook.sqlite", null, 1);
+        bookingDao = new BookingDao(database);
+        bookDao = new BookDao(database);
 
+        mapping();
+        listBookingOfUserAdapter = new ListBookingOfUserAdapter(this, R.layout.list_book_of_user_booking, bookArrayList);
+        listView.setAdapter(listBookingOfUserAdapter);
+
+        // sự kiện trả lại sách
+        final AlertDialog.Builder b = new AlertDialog.Builder(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                int idItem = bookArrayList.get(position).getId();
-                if (KeepInformation.getRole().trim().toUpperCase().equals("ADMIN")) {
-                    Intent intent = new Intent(HomeListBook.this, DetailEditBook.class);
-                    intent.putExtra("idBook", idItem);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(HomeListBook.this, DetailBook.class);
-                    intent.putExtra("idBook", idItem);
-                    startActivity(intent);
-                }
+                final int idBook = bookArrayList.get(position).getBook().getId();
+                final int idBooking = bookArrayList.get(position).getId();
+                final int quantity = Integer.parseInt(bookArrayList.get(position).getBook().getQuantity());
+                b.setMessage("Bạn có muốn trả sách không?");
+                // Nút Ok
+                b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        bookDao.updateQuantityBookById(quantity + 1, idBook);
+                        bookingDao.deleteBookingById(idBooking);
+                        Intent intent = new Intent(BookingListOfUser.this, BookingListOfUser.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                //Nút Cancel
+                b.setNegativeButton("Không đồng ý", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog al = b.create();
+                al.show();
             }
         });
     }
 
     public void mapping() {
-        listView = findViewById(R.id.listBook);
+        listView = findViewById(R.id.listBookOfUserBooking);
         bookArrayList = new ArrayList<>();
-        Database database = new Database(this, "ManagementBook.sqlite", null, 1);
-        BookDao bookDao = new BookDao(database);
-        bookArrayList = bookDao.getAllBook();
+        bookingDao = new BookingDao(database);
+        bookArrayList = bookingDao.getAllBookOfUserBooking(KeepInformation.getIdUser());
+        if (bookArrayList.size() == 0) {
+            Toast.makeText(this, "Bạn chưa thuê cuốn sách nào", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    // sử lý menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (KeepInformation.getRole().toUpperCase().equals("ADMIN")) {

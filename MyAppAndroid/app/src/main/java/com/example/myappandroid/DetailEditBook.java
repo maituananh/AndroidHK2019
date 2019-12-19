@@ -1,60 +1,90 @@
 package com.example.myappandroid;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.dao.BookDao;
 import com.example.model.Book;
 import com.example.model.KeepInformation;
 
-import java.util.ArrayList;
-import java.util.List;
+public class DetailEditBook extends AppCompatActivity {
+    Database database;
+    BookDao bookDao;
 
-public class HomeListBook extends AppCompatActivity {
-    ListView listView;
-    List<Book> bookArrayList;
-    ListBookAdapter listBookAdapter;
+    private int idBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_list_book);
-        mapping();
-        listBookAdapter = new ListBookAdapter(this, R.layout.list_book, bookArrayList);
-        listView.setAdapter(listBookAdapter);
+        setContentView(R.layout.activity_detail_edit_book);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                int idItem = bookArrayList.get(position).getId();
-                if (KeepInformation.getRole().trim().toUpperCase().equals("ADMIN")) {
-                    Intent intent = new Intent(HomeListBook.this, DetailEditBook.class);
-                    intent.putExtra("idBook", idItem);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(HomeListBook.this, DetailBook.class);
-                    intent.putExtra("idBook", idItem);
-                    startActivity(intent);
-                }
-            }
-        });
+        database = new Database(this, "ManagementBook.sqlite", null, 1);
+        bookDao = new BookDao(database);
+
+        Bundle extras = getIntent().getExtras();
+        idBook = extras.getInt("idBook"); // LẤY LẠI ID TỪ HOME LIST BOOK WITH ROLE ADMIN
+
+        TextView nameBook = findViewById(R.id.nameBook);
+        TextView nameAuthor = findViewById(R.id.nameAuthor);
+        TextView price = findViewById(R.id.price);
+        TextView quantity = findViewById(R.id.quantity);
+        TextView description = findViewById(R.id.description);
+        ImageView imageView = findViewById(R.id.image);
+
+        Book book = bookDao.findBookById(idBook);
+        nameBook.setText("Name: " + book.getName());
+        nameAuthor.setText("Author: " + book.getAuthor());
+        price.setText("Price: " + book.getPrice());
+        quantity.setText("Quantity: " + book.getQuantity());
+        description.setText("Description: " + book.getDescription());
+        imageView.setImageResource(getImageId(this, book.getImage()));
+
     }
 
-    public void mapping() {
-        listView = findViewById(R.id.listBook);
-        bookArrayList = new ArrayList<>();
-        Database database = new Database(this, "ManagementBook.sqlite", null, 1);
-        BookDao bookDao = new BookDao(database);
-        bookArrayList = bookDao.getAllBook();
+    public void onClickEditBook(View view) {
+        // chuyển sang form update
+        Intent intent = new Intent(DetailEditBook.this, UpdateBook.class);
+        intent.putExtra("idBook", idBook);
+        startActivity(intent);
+    }
+
+    public void onClickDeleteBook(View view) {
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setMessage("Do you want to DELETE this book?");
+        // Nút Ok
+        b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                bookDao.deleteBookById(idBook);
+                Intent intent = new Intent(DetailEditBook.this, HomeListBook.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //Nút Cancel
+        b.setNegativeButton("Không đồng ý", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog al = b.create();
+        al.show();
+    }
+
+    // lấy id image
+    public static int getImageId(Context context, String imageName) {
+        imageName = imageName.substring(0, imageName.indexOf("."));
+        return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
     }
 
     // sử lý menu
