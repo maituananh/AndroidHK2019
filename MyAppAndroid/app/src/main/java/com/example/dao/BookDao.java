@@ -1,11 +1,12 @@
 package com.example.dao;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.model.Book;
 import com.example.myappandroid.Database;
-import com.example.myappandroid.R;
 
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +19,7 @@ public class BookDao implements BookDaoImpl {
 
     @Override
     public void addNewBook(Book book) {
-        database.queryData("INSERT INTO Book VALUES(NULL, '" + book.getName() + "', " +
-                "'" + book.getImage() + "', '" + book.getPrice() + "', '" + book.getAuthor() + "', " +
-                "'" + book.getDescription() + "', '" + book.getQuantity() + "')");
+        database.insertDataHasImage(book);
     }
 
     @Override
@@ -31,7 +30,7 @@ public class BookDao implements BookDaoImpl {
             Book book = new Book();
             book.setId(cursor.getInt(0));
             book.setName(cursor.getString(1));
-            book.setImage(cursor.getString(2));
+            book.setImage(cursor.getBlob(2));
             book.setPrice(cursor.getString(3));
             book.setAuthor(cursor.getString(4));
             book.setDescription(cursor.getString(5));
@@ -53,7 +52,7 @@ public class BookDao implements BookDaoImpl {
         while (cursor.moveToNext()) {
             book.setId(cursor.getInt(0));
             book.setName(cursor.getString(1));
-            book.setImage(cursor.getString(2));
+            book.setImage(cursor.getBlob(2));
             book.setPrice(cursor.getString(3));
             book.setAuthor(cursor.getString(4));
             book.setDescription(cursor.getString(5));
@@ -64,9 +63,7 @@ public class BookDao implements BookDaoImpl {
 
     @Override
     public void updateBookById(Book book) {
-        database.queryData("UPDATE Book SET name = '" + book.getName() + "', image = '" + book.getImage() + "', " +
-                "price = '" + book.getPrice() + "', author = '" + book.getAuthor() + "', description = '" + book.getDescription() + "', " +
-                "quantity = '" + book.getQuantity() + "'    WHERE id = " + book.getId());
+        database.UpdateDataHasImage(book);
     }
 
     @Override
@@ -85,7 +82,7 @@ public class BookDao implements BookDaoImpl {
             Book book = new Book();
             book.setId(cursor.getInt(0));
             book.setName(cursor.getString(1));
-            book.setImage(cursor.getString(2));
+            book.setImage(cursor.getBlob(2));
             book.setPrice(cursor.getString(3));
             book.setAuthor(cursor.getString(4));
             book.setDescription(cursor.getString(5));
@@ -107,7 +104,7 @@ public class BookDao implements BookDaoImpl {
             Book book = new Book();
             book.setId(cursor.getInt(0));
             book.setName(cursor.getString(1));
-            book.setImage(cursor.getString(2));
+            book.setImage(cursor.getBlob(2));
             book.setPrice(cursor.getString(3));
             book.setAuthor(cursor.getString(4));
             book.setDescription(cursor.getString(5));

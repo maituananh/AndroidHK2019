@@ -74,6 +74,8 @@ public class HomeListBook extends AppCompatActivity {
         if (KeepInformation.getRole().toUpperCase().equals("ADMIN")) {
             switch (item.getItemId()) {
                 case R.id.addBookAdmin:
+                    intent = new Intent(this, AddBook.class);
+                    startActivity(intent);
                     break;
                 case R.id.listBookAdmin:
                     intent = new Intent(this, HomeListBook.class);

@@ -3,8 +3,9 @@ package com.example.myappandroid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,18 +58,20 @@ public class DetailBook extends AppCompatActivity {
         price.setText("Name: " + book.getPrice());
         description.setText("Description: " + book.getDescription());
         quantity.setText(book.getQuantity());
-        imageView.setImageResource(getImageId(this, book.getImage()));
+        // chuyển byte từ data sang bitmap và gắn vào imageView
+        byte[] image = book.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+        imageView.setImageBitmap(bitmap);
     }
 
     public void functionBooking(View view) {
         int idUser = KeepInformation.getIdUser();
         List<Booking> listBookingOfUser = bookingDao.getAllBookOfUserBooking(idUser);
         boolean checkBooking = false;
-        int quantityBook = 0;
+        int quantityBook = Integer.parseInt(bookDao.findBookById(idBook).getQuantity());// nếu sl sách = 0 thì ko thuê đc
         for (int i = 0; i < listBookingOfUser.size(); i++) {
             if (idBook == listBookingOfUser.get(i).getBook().getId()) {
                 checkBooking = true; // check sách đã có thì ko được thuê nữa
-                quantityBook = Integer.parseInt(listBookingOfUser.get(i).getBook().getQuantity()); // nếu sl sách = 0 thì ko thuê đc
             }
         }
         if (checkBooking) {
@@ -85,12 +88,6 @@ public class DetailBook extends AppCompatActivity {
                 startActivity(intent);
             }
         }
-    }
-
-    // lấy id image
-    public static int getImageId(Context context, String imageName) {
-        imageName = imageName.substring(0, imageName.indexOf("."));
-        return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
     }
 
     // sử lý menu
@@ -110,6 +107,8 @@ public class DetailBook extends AppCompatActivity {
         if (KeepInformation.getRole().toUpperCase().equals("ADMIN")) {
             switch (item.getItemId()) {
                 case R.id.addBookAdmin:
+                    intent = new Intent(this, AddBook.class);
+                    startActivity(intent);
                     break;
                 case R.id.listBookAdmin:
                     intent = new Intent(this, HomeListBook.class);

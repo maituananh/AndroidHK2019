@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateBook">
+    tools:context=".AddBook">
 
     <TextView
         android:textColor="@android:color/holo_blue_bright"
-        android:text="Update Book"
+        android:text="Add Book"
         android:textSize="40dp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
     <ImageView
-        android:id="@+id/imageUpdate"
+        android:id="@+id/imageAdd"
         android:layout_marginTop="50dp"
         android:layout_width="200dp"
         android:layout_height="200dp"/>
@@ -47,7 +47,7 @@
         android:layout_height="50dp"
         android:text="Name Book:" />
     <EditText
-        android:id="@+id/nameBookUpdate"
+        android:id="@+id/nameBookAdd"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="260dp"
@@ -61,7 +61,7 @@
         android:layout_height="50dp"
         android:text="Name Author:" />
     <EditText
-        android:id="@+id/nameAuthorUpdate"
+        android:id="@+id/nameAuthorAdd"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="310dp"
@@ -75,7 +75,7 @@
         android:layout_height="50dp"
         android:text="Price:" />
     <EditText
-        android:id="@+id/priceUpdate"
+        android:id="@+id/priceAdd"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="360dp"
@@ -89,7 +89,7 @@
         android:layout_height="50dp"
         android:text="Quantity:" />
     <EditText
-        android:id="@+id/quantityUpdate"
+        android:id="@+id/quantityAdd"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="410dp"
@@ -103,7 +103,7 @@
         android:layout_height="50dp"
         android:text="Description:" />
     <EditText
-        android:id="@+id/descriptionUpdate"
+        android:id="@+id/descriptionAdd"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="460dp"
@@ -114,10 +114,10 @@
         android:background="@android:color/holo_blue_light"
         android:textColor="@android:color/background_light"
         android:layout_marginTop="520dp"
-        android:text="UPDATE BOOK"
-        android:onClick="buttonUpdate"
+        android:text="ADD BOOK"
         android:layout_marginLeft="100dp"
         android:layout_width="210dp"
+        android:onClick="buttonAddBook"
         android:layout_height="50dp"/>
 
 

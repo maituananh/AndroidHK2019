@@ -1,6 +1,8 @@
 package com.example.myappandroid;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,16 +52,11 @@ public class ListBookingOfUserAdapter extends BaseAdapter {
         Booking booking = bookingList.get(i);
         textNameBook.setText("Name: " + booking.getBook().getName());
         textPrice.setText("Price: " + booking.getBook().getPrice() + " VND");
-        String split = booking.getBook().getImage().substring(0, booking.getBook().getImage().indexOf("."));
-        imageView.setImageResource(getImageId(this.context, split));
-        imageView.getLayoutParams().width = 250;
-        imageView.requestLayout();
+
+        // chuyển byte từ data sang bitmap và gắn vào imageView
+        byte[] image = booking.getBook().getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+        imageView.setImageBitmap(bitmap);
         return view;
     }
-
-    public static int getImageId(Context context, String imageName) {
-        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
-    }
-
-
 }

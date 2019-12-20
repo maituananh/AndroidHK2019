@@ -35,7 +35,7 @@ public class BookingDao implements BookingDaoImpl{
             Book book = new Book();
             book.setId(cursor.getInt(2));
             book.setName(cursor.getString(3));
-            book.setImage(cursor.getString(4));
+            book.setImage(cursor.getBlob(4));
             book.setPrice(cursor.getString(5));
             book.setQuantity(cursor.getString(6));
 

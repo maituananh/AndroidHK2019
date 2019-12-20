@@ -3,7 +3,7 @@ package com.example.model;
 public class Book {
     private int id;
     private String name;
-    private String image;
+    private byte[] image;
     private String price;
     private String author;
     private String description;
@@ -12,7 +12,8 @@ public class Book {
     public Book() {
     }
 
-    public Book(int id, String name, String image, String price, String author, String description, String quantity) {
+
+    public Book(int id, String name, byte[] image, String price, String author, String description, String quantity) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -38,11 +39,11 @@ public class Book {
         this.name = name;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
