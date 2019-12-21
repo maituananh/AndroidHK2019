@@ -24,7 +24,7 @@ public class BookDao implements BookDaoImpl {
 
     @Override
     public List<Book> getAllBook() {
-        Cursor cursor = database.getData("SELECT * FROM Book");
+        Cursor cursor = database.getData("SELECT id, name, image, price, author FROM Book");
         List<Book> bookList = new ArrayList<>();
         while (cursor.moveToNext()) {
             Book book = new Book();
@@ -33,8 +33,6 @@ public class BookDao implements BookDaoImpl {
             book.setImage(cursor.getBlob(2));
             book.setPrice(cursor.getString(3));
             book.setAuthor(cursor.getString(4));
-            book.setDescription(cursor.getString(5));
-            book.setQuantity(cursor.getString(6));
             bookList.add(book);
         }
         return bookList;

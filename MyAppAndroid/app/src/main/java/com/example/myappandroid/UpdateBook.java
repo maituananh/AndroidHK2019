@@ -1,5 +1,6 @@
 package com.example.myappandroid;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,12 +12,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.dao.BookDao;
 import com.example.model.Book;
+import com.example.model.KeepInformation;
 import com.example.util.RandomFileNameImage;
 
 import java.io.ByteArrayOutputStream;
@@ -141,4 +145,68 @@ public class UpdateBook extends AppCompatActivity {
         Intent intent = new Intent(this, HomeListBook.class);
         startActivity(intent);
     }
+    // sử lý menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (KeepInformation.getRole().toUpperCase().equals("ADMIN")) {
+            getMenuInflater().inflate(R.menu.layout_menu_admin, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.layout_menu_user, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        if (KeepInformation.getRole().toUpperCase().equals("ADMIN")) {
+            switch (item.getItemId()) {
+                case R.id.addBookAdmin:
+                    intent = new Intent(this, AddBook.class);
+                    startActivity(intent);
+                    break;
+                case R.id.listBookAdmin:
+                    intent = new Intent(this, HomeListBook.class);
+                    startActivity(intent);
+                    break;
+                case R.id.searchBookAdmin:
+                    intent = new Intent(this, SearchBook.class);
+                    startActivity(intent);
+                    break;
+                case R.id.bookBookedAdmin:
+                    intent = new Intent(this, BookingListOfUser.class);
+                    startActivity(intent);
+                    break;
+                case R.id.logoutAdmin:
+                    KeepInformation.setIdUser(0);
+                    KeepInformation.setRole("");
+                    intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+        } else {
+            switch (item.getItemId()) {
+                case R.id.listBookUser:
+                    intent = new Intent(this, HomeListBook.class);
+                    startActivity(intent);
+                    break;
+                case R.id.searchBookUser:
+                    intent = new Intent(this, SearchBook.class);
+                    startActivity(intent);
+                    break;
+                case R.id.bookBookedUser:
+                    intent = new Intent(this, BookingListOfUser.class);
+                    startActivity(intent);
+                    break;
+                case R.id.logoutUser:
+                    KeepInformation.setIdUser(0);
+                    KeepInformation.setRole("");
+                    intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
