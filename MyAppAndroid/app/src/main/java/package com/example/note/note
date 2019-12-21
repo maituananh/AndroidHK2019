@@ -1,0 +1,3 @@
+- project đang sử dụng android 5.0.
+
+== nếu android > 5.0 thì mở cmt phần 5.0 ở class addbook

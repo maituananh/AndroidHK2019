@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         userDao = new UserDao(database);
 
 //        database.queryData("DROP TABLE Book");
-//        database.queryData("DROP TABLE User");
+        database.queryData("DROP TABLE User");
 //        database.queryData("DROP TABLE Booking");
 
         database.queryData("CREATE TABLE IF NOT EXISTS Book (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(200), " +

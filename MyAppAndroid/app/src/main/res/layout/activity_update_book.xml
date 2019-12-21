@@ -16,9 +16,10 @@
 
     <ImageView
         android:id="@+id/imageUpdate"
-        android:layout_marginTop="50dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        android:layout_width="168dp"
+        android:layout_height="184dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp" />
 
     <Button
         android:background="@android:color/holo_orange_light"
@@ -41,83 +42,82 @@
         android:layout_height="50dp"/>
 
     <TextView
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_marginTop="260dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="Name Book:" />
     <EditText
         android:id="@+id/nameBookUpdate"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="260dp"
-        android:layout_width="200dp"
-        android:layout_height="50dp"/>
+        android:layout_height="40dp"
+        android:layout_width="200dp"/>
 
     <TextView
-        android:textSize="30dp"
-        android:layout_marginTop="310dp"
+        android:textSize="20dp"
+        android:layout_marginTop="300dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="Name Author:" />
     <EditText
         android:id="@+id/nameAuthorUpdate"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
-        android:layout_marginTop="310dp"
+        android:layout_marginTop="300dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"/>
+        android:layout_height="40dp"/>
 
     <TextView
-        android:textSize="30dp"
-        android:layout_marginTop="360dp"
+        android:textSize="20dp"
+        android:layout_marginTop="340dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="Price:" />
     <EditText
         android:id="@+id/priceUpdate"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="340dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"/>
+        android:layout_height="40dp"/>
 
     <TextView
-        android:textSize="30dp"
-        android:layout_marginTop="410dp"
+        android:textSize="20dp"
+        android:layout_marginTop="380dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="Quantity:" />
     <EditText
         android:id="@+id/quantityUpdate"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
-        android:layout_marginTop="410dp"
+        android:layout_marginTop="380dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"/>
+        android:layout_height="40dp"/>
 
     <TextView
-        android:textSize="30dp"
-        android:layout_marginTop="460dp"
+        android:textSize="20dp"
+        android:layout_marginTop="420dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="Description:" />
     <EditText
         android:id="@+id/descriptionUpdate"
         android:textSize="20dp"
         android:layout_marginLeft="200dp"
-        android:layout_marginTop="460dp"
+        android:layout_marginTop="420dp"
         android:layout_width="200dp"
-        android:layout_height="50dp"/>
+        android:layout_height="70dp"/>
 
     <Button
         android:background="@android:color/holo_blue_light"
         android:textColor="@android:color/background_light"
-        android:layout_marginTop="520dp"
+        android:layout_marginTop="480dp"
         android:text="UPDATE BOOK"
         android:onClick="buttonUpdate"
-        android:layout_marginLeft="100dp"
-        android:layout_width="210dp"
+        android:layout_width="190dp"
         android:layout_height="50dp"/>
 
 
