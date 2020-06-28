@@ -1,12 +1,10 @@
 package com.example.dao;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.model.Book;
 import com.example.myappandroid.Database;
 
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 

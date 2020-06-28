@@ -3,20 +3,25 @@ package com.example.myappandroid;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.dao.BookDao;
 import com.example.model.Book;
@@ -78,8 +83,10 @@ public class UpdateBook extends AppCompatActivity {
     // khi click vào nút button camera thì cho chụp ảnh
     public void buttonCamera(View view) {
         // chỉ chạy được từ android <= 5.0
-        Intent intent = actionImage();
-        startActivityForResult(intent, REQUEST_CODE_CAMERA);
+//        Intent intent = actionImage();
+//        startActivityForResult(intent, REQUEST_CODE_CAMERA);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_CAMERA);
+
     }
 
     public Intent actionImage() {
@@ -116,12 +123,37 @@ public class UpdateBook extends AppCompatActivity {
             System.out.println(selectedImage);
         }
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_CAMERA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, REQUEST_CODE_CAMERA);
+                } else {
+                    Toast.makeText(this, "Bạn Không Cho Phép Mở CAMERA", Toast.LENGTH_SHORT);
+                }
+                break;
+            case PICK_IMAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, PICK_IMAGE);
+                } else {
+                    Toast.makeText(this, "Bạn Không Cho Phép truy cập ảnh", Toast.LENGTH_SHORT);
+                }
+                break;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 
     public void buttonSelectImageToPhone(View view) {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE);
     }
 
     public void buttonUpdate(View view) {
